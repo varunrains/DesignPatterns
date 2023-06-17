@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Unity" Version="5.11.10" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CustomerProjectPhase1\MiddleLayer.csproj" />
+    <ProjectReference Include="..\InterfaceCustomer\InterfaceCustomer.csproj" />
+    <ProjectReference Include="..\ValidationAlgorithms\ValidationAlgorithms.csproj" />
   </ItemGroup>
 
 </Project>

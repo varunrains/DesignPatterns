@@ -89,7 +89,7 @@
             this.label5.Size = new System.Drawing.Size(50, 15);
             this.label5.TabIndex = 4;
             this.label5.Text = "Bill Date";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            //this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 

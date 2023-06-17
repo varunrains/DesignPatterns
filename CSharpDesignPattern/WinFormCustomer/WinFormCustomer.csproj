@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomerProjectPhase1\MiddleLayer.csproj" />
     <ProjectReference Include="..\FactoryCustomer\FactoryCustomer.csproj" />
+    <ProjectReference Include="..\InterfaceCustomer\InterfaceCustomer.csproj" />
   </ItemGroup>
 
 </Project>
