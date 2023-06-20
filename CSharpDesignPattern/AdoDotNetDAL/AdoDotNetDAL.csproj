@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CommonDAL\CommonDAL.csproj" />
+    <ProjectReference Include="..\InterfaceCustomer\InterfaceCustomer.csproj" />
     <ProjectReference Include="..\InterfaceDAL\InterfaceDAL.csproj" />
   </ItemGroup>
 

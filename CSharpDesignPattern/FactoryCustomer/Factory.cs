@@ -1,7 +1,10 @@
-﻿using InterfaceCustomer;
+﻿using AdoDotNetDAL;
+using InterfaceCustomer;
+using InterfaceDAL;
 using MiddleLayer;
 using Unity;
 using Unity.Injection;
+using Unity.Resolution;
 using ValidationAlgorithms;
 
 namespace FactoryCustomer
@@ -10,13 +13,13 @@ namespace FactoryCustomer
     //Where you are outsourcing the object creation work to some other project
     //So that when there is a new customer type you can change
     //in only one place and not many places
-    public static class Factory //Design Pattern :- Simple Factory pattern
+    public static class Factory<AnyType> //Design Pattern :- Simple Factory pattern
     {
         //private static readonly Lazy<Dictionary<string, CustomerBase>> customers 
         //    = new Lazy<Dictionary<string, CustomerBase>>(() => SetCustomerTypes());
 
-        private static Lazy<IUnityContainer> customers 
-            = new Lazy<IUnityContainer>(() => SetCustomerTypes());
+        private static Lazy<IUnityContainer> ObjectsOfOurProject 
+            = new Lazy<IUnityContainer>(() => SetObjectTypes());
 
         static Factory()
         {
@@ -37,17 +40,18 @@ namespace FactoryCustomer
         //    return custs;
         //}
 
-        private static IUnityContainer SetCustomerTypes()
+        private static IUnityContainer SetObjectTypes()
         {
             var unity = new UnityContainer();
             unity.RegisterType<ICustomer, Customer>("Customer", 
                 new InjectionConstructor(new CustomerValidationAll()));
             unity.RegisterType<ICustomer, Lead>("Lead", new InjectionConstructor(new LeadValidation()));
+            unity.RegisterType<IDal<ICustomer>, CustomerDAL>("ADODal");
 
             return unity;
         }
 
-        public static ICustomer Create(string typeCust)
+        public static AnyType Create(string Type)
         {
             //Design Pattern :- Lazy loading
             //If can be replaced by using Lazy class (inbuilt)
@@ -60,7 +64,12 @@ namespace FactoryCustomer
 
             //Design Pattern :- RIP Replace if with polymorphism
 
-            return  customers.Value.Resolve<ICustomer>(typeCust);
+            return ObjectsOfOurProject.Value.Resolve<AnyType>(Type,
+                
+                new Unity.Resolution.ResolverOverride[]
+                {
+                    new ParameterOverride("connectionString",@"Data source=localhost;Initial Catalog=CustomerDB")
+                });
         }
     }
 }

@@ -16,10 +16,17 @@ namespace AdoDotNetDAL
         private void Open()
         {
             connection = new SqlConnection(_connectionString);
+            connection.Open();
+            command = new SqlCommand();
+            command.Connection = connection;
         }
 
-        public abstract void ExecuteCommand(AnyType obj);
-        private void Close() { }
+        //Child classes have liberty to override the methods if needed
+        public abstract void ExecuteCommand(AnyType obj);  
+        private void Close()
+        {
+            connection.Close();
+        }
 
         // Design pattern :- Template Pattern  -> You will have a fixed sequence
         //But the child classes will define how the individual methods will be used in class
@@ -33,7 +40,10 @@ namespace AdoDotNetDAL
 
         public override void Save()
         {
-            base.Save();
+           foreach(AnyType o in anyTypes)
+            {
+                Execute(o);
+            }
         }
 
     }

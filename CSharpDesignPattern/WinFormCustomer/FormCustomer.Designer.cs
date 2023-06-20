@@ -42,6 +42,7 @@
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +90,6 @@
             this.label5.Size = new System.Drawing.Size(50, 15);
             this.label5.TabIndex = 4;
             this.label5.Text = "Bill Date";
-            //this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -167,11 +167,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(724, 229);
             this.dataGridView1.TabIndex = 14;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(271, 172);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(96, 41);
+            this.btnAdd.TabIndex = 15;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 548);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.addressTextBox);
@@ -211,5 +222,6 @@
         private TextBox addressTextBox;
         private Button button1;
         private DataGridView dataGridView1;
+        private Button btnAdd;
     }
 }

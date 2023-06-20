@@ -1,6 +1,7 @@
 using MiddleLayer;
 using FactoryCustomer;
 using InterfaceCustomer;
+using InterfaceDAL;
 
 namespace WinFormCustomer
 {
@@ -43,7 +44,15 @@ namespace WinFormCustomer
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            cust = Factory.Create(comboBox1.Text);
+            cust = Factory<ICustomer>.Create(comboBox1.Text);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            SetCustomer();
+            IDal<ICustomer> dal = Factory<IDal<ICustomer>>.Create("ADODal");
+            dal.Add(cust);//In memory
+            dal.Save(); //Physical commit
         }
     }
 }
