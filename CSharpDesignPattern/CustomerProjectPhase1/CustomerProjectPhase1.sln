@@ -9,15 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormCustomer", "..\WinFo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactoryCustomer", "..\FactoryCustomer\FactoryCustomer.csproj", "{29C1AFF1-C9D8-4EB1-B4EB-50DF9613502C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceCustomer", "..\InterfaceCustomer\InterfaceCustomer.csproj", "{04D3263B-6CA7-4FC8-967D-3CB0C962328F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceCustomer", "..\InterfaceCustomer\InterfaceCustomer.csproj", "{04D3263B-6CA7-4FC8-967D-3CB0C962328F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationAlgorithms", "..\ValidationAlgorithms\ValidationAlgorithms.csproj", "{C03E04C0-5C27-4F64-B612-2FCD8E058B6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidationAlgorithms", "..\ValidationAlgorithms\ValidationAlgorithms.csproj", "{C03E04C0-5C27-4F64-B612-2FCD8E058B6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceDAL", "..\InterfaceDAL\InterfaceDAL.csproj", "{62484F9D-8BB1-4A9B-9CB5-C4272C095455}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceDAL", "..\InterfaceDAL\InterfaceDAL.csproj", "{62484F9D-8BB1-4A9B-9CB5-C4272C095455}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonDAL", "..\CommonDAL\CommonDAL.csproj", "{6038AC11-B1F5-4326-8DE5-BDB8E08867EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonDAL", "..\CommonDAL\CommonDAL.csproj", "{6038AC11-B1F5-4326-8DE5-BDB8E08867EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoDotNetDAL", "..\AdoDotNetDAL\AdoDotNetDAL.csproj", "{02D3580F-1786-4F95-B17A-30E506C6F7AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoDotNetDAL", "..\AdoDotNetDAL\AdoDotNetDAL.csproj", "{02D3580F-1786-4F95-B17A-30E506C6F7AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryDAL", "..\FactoryDAL\FactoryDAL.csproj", "{260883D7-FD25-4512-A91E-6BF807DDC0DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{02D3580F-1786-4F95-B17A-30E506C6F7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02D3580F-1786-4F95-B17A-30E506C6F7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02D3580F-1786-4F95-B17A-30E506C6F7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{260883D7-FD25-4512-A91E-6BF807DDC0DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{260883D7-FD25-4512-A91E-6BF807DDC0DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{260883D7-FD25-4512-A91E-6BF807DDC0DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{260883D7-FD25-4512-A91E-6BF807DDC0DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

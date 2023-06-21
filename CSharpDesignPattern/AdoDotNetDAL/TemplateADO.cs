@@ -22,7 +22,9 @@ namespace AdoDotNetDAL
         }
 
         //Child classes have liberty to override the methods if needed
-        public abstract void ExecuteCommand(AnyType obj);  
+        protected abstract void ExecuteCommand(AnyType obj); //For POST
+
+        protected abstract List<AnyType> ExecuteCommand(); //For GET
         private void Close()
         {
             connection.Close();
@@ -38,12 +40,26 @@ namespace AdoDotNetDAL
             Close();
         }
 
+        public List<AnyType> Execute()  //Fixed sequence for GET operation
+        {
+            Open();
+            List<AnyType> objs = ExecuteCommand();
+            Close();
+
+            return objs;
+        }
+
         public override void Save()
         {
            foreach(AnyType o in anyTypes)
             {
                 Execute(o);
             }
+        }
+
+        public override List<AnyType> Search()
+        {
+            return Execute();
         }
 
     }

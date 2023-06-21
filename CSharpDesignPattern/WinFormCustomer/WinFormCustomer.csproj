@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FactoryCustomer\FactoryCustomer.csproj" />
+    <ProjectReference Include="..\FactoryDAL\FactoryDAL.csproj" />
     <ProjectReference Include="..\InterfaceCustomer\InterfaceCustomer.csproj" />
   </ItemGroup>
 

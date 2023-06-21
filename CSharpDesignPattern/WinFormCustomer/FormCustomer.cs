@@ -2,6 +2,7 @@ using MiddleLayer;
 using FactoryCustomer;
 using InterfaceCustomer;
 using InterfaceDAL;
+using FactoryDAL;
 
 namespace WinFormCustomer
 {
@@ -40,6 +41,17 @@ namespace WinFormCustomer
         {
             billAmountTxt.Text = "0";
             billDateTxt.Text = "1/1/2023";
+            dalType.Items.Add("ADODal");
+            dalType.Items.Add("EFDal");
+            LoadGrid();
+        }
+
+        private void LoadGrid()
+        {
+            IDal<ICustomer> dal = FactoryDAL<IDal<ICustomer>>.Create("ADODal");
+            List<ICustomer> custs = dal.Search();
+            dtgCustomer.DataSource = custs;
+
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -50,9 +62,11 @@ namespace WinFormCustomer
         private void btnAdd_Click(object sender, EventArgs e)
         {
             SetCustomer();
-            IDal<ICustomer> dal = Factory<IDal<ICustomer>>.Create("ADODal");
+            IDal<ICustomer> dal = FactoryDAL<IDal<ICustomer>>.Create("ADODal");
             dal.Add(cust);//In memory
             dal.Save(); //Physical commit
         }
+
+       
     }
 }

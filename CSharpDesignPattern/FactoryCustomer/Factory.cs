@@ -1,6 +1,4 @@
-﻿using AdoDotNetDAL;
-using InterfaceCustomer;
-using InterfaceDAL;
+﻿using InterfaceCustomer;
 using MiddleLayer;
 using Unity;
 using Unity.Injection;
@@ -46,7 +44,7 @@ namespace FactoryCustomer
             unity.RegisterType<ICustomer, Customer>("Customer", 
                 new InjectionConstructor(new CustomerValidationAll()));
             unity.RegisterType<ICustomer, Lead>("Lead", new InjectionConstructor(new LeadValidation()));
-            unity.RegisterType<IDal<ICustomer>, CustomerDAL>("ADODal");
+            
 
             return unity;
         }
@@ -63,13 +61,9 @@ namespace FactoryCustomer
 
 
             //Design Pattern :- RIP Replace if with polymorphism
-
-            return ObjectsOfOurProject.Value.Resolve<AnyType>(Type,
-                
-                new Unity.Resolution.ResolverOverride[]
-                {
-                    new ParameterOverride("connectionString",@"Data source=localhost;Initial Catalog=CustomerDB")
-                });
+            //Resol
+            return ObjectsOfOurProject.Value.Resolve<AnyType>(Type);
+               
         }
     }
 }

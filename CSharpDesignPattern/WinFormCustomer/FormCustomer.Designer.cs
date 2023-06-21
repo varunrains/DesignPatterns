@@ -41,9 +41,10 @@
             this.phnNumber = new System.Windows.Forms.TextBox();
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgCustomer = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dalType = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCustomer)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -158,14 +159,14 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // dataGridView1
+            // dtgCustomer
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(41, 288);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(724, 229);
-            this.dataGridView1.TabIndex = 14;
+            this.dtgCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgCustomer.Location = new System.Drawing.Point(41, 288);
+            this.dtgCustomer.Name = "dtgCustomer";
+            this.dtgCustomer.RowTemplate.Height = 25;
+            this.dtgCustomer.Size = new System.Drawing.Size(724, 229);
+            this.dtgCustomer.TabIndex = 14;
             // 
             // btnAdd
             // 
@@ -177,13 +178,22 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // dalType
+            // 
+            this.dalType.FormattingEnabled = true;
+            this.dalType.Location = new System.Drawing.Point(634, 41);
+            this.dalType.Name = "dalType";
+            this.dalType.Size = new System.Drawing.Size(131, 23);
+            this.dalType.TabIndex = 16;
+            // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 548);
+            this.Controls.Add(this.dalType);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgCustomer);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.addressTextBox);
             this.Controls.Add(this.phnNumber);
@@ -200,7 +210,7 @@
             this.Name = "FormCustomer";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormCustomer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgCustomer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,7 +231,8 @@
         private TextBox phnNumber;
         private TextBox addressTextBox;
         private Button button1;
-        private DataGridView dataGridView1;
+        private DataGridView dtgCustomer;
         private Button btnAdd;
+        private ComboBox dalType;
     }
 }
