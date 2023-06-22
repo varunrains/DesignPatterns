@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace AdoDotNetDAL
 {
-    public class CustomerDAL : TemplateADO<ICustomer>, IDal<ICustomer>
+    public class CustomerDAL : TemplateADO<CustomerBase>, IDal<CustomerBase>
     {
         public CustomerDAL(string connectionString) : base(connectionString)
         {
@@ -15,13 +15,15 @@ namespace AdoDotNetDAL
         //Fixed sequence
         //Child classes can override the methods in the sequence
         //But the child classes cannot override the sequence itself (VIMP point)
-        protected override void ExecuteCommand(ICustomer obj)
+        protected override void ExecuteCommand(CustomerBase obj)
         {
             command.CommandText = "insert into tblCustomer(" +
                                           "CustomerName," +
+                                          "CustomerType," +
                                           "BillAmount,BillDate," +
                                           "PhoneNumber,Address)" +
                                           "values('" + obj.CustomerName + "'," +
+                                          obj.CustomerType + ",'" +
                                           obj.BillAmount + ",'" +
                                           obj.BillDate + "','" +
                                           obj.PhoneNumber + "','" +
@@ -29,16 +31,17 @@ namespace AdoDotNetDAL
             command.ExecuteNonQuery();
         }
 
-        protected override List<ICustomer> ExecuteCommand()
+        protected override List<CustomerBase> ExecuteCommand()
         {
             command.CommandText = "select * from tblCustomer";
             SqlDataReader dr = null;
             dr = command.ExecuteReader();
-            List<ICustomer> custs = new List<ICustomer>();
+            List<CustomerBase> custs = new List<CustomerBase>();
             while (dr.Read())
             {
-                ICustomer cust = Factory<ICustomer>.Create("Customer");
+                CustomerBase cust = Factory<CustomerBase>.Create("Customer");
                 cust.CustomerName = dr["CustomerName"].ToString();
+                cust.CustomerType = dr["CustomerType"].ToString();
                 cust.BillDate = Convert.ToDateTime(dr["BillDate"]);
                 cust.BillAmount = Convert.ToDecimal(dr["BillAmount"]);
                 cust.PhoneNumber = dr["PhoneNumber"].ToString();

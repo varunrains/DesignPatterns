@@ -6,13 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Unity" Version="5.11.10" />
-	</ItemGroup>
-	
   <ItemGroup>
-    <ProjectReference Include="..\AdoDotNetDAL\AdoDotNetDAL.csproj" />
-    <ProjectReference Include="..\EntityFrameworkDAL\EntityFrameworkDAL.csproj" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerProjectPhase1\MiddleLayer.csproj" />
     <ProjectReference Include="..\InterfaceCustomer\InterfaceCustomer.csproj" />
     <ProjectReference Include="..\InterfaceDAL\InterfaceDAL.csproj" />
   </ItemGroup>

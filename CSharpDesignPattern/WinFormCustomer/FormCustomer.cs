@@ -8,7 +8,7 @@ namespace WinFormCustomer
 {
     public partial class FormCustomer : Form
     {
-        private ICustomer cust;
+        private CustomerBase cust;
 
         public FormCustomer()
         {
@@ -41,32 +41,37 @@ namespace WinFormCustomer
         {
             billAmountTxt.Text = "0";
             billDateTxt.Text = "1/1/2023";
+
             dalType.Items.Add("ADODal");
             dalType.Items.Add("EFDal");
+            dalType.SelectedIndex = 0;
             LoadGrid();
         }
 
         private void LoadGrid()
         {
-            IDal<ICustomer> dal = FactoryDAL<IDal<ICustomer>>.Create("ADODal");
-            List<ICustomer> custs = dal.Search();
+            IDal<CustomerBase> dal = FactoryDAL<IDal<CustomerBase>>.Create(dalType.Text);
+            List<CustomerBase> custs = dal.Search();
             dtgCustomer.DataSource = custs;
 
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            cust = Factory<ICustomer>.Create(comboBox1.Text);
+            cust = Factory<CustomerBase>.Create(comboBox1.Text);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             SetCustomer();
-            IDal<ICustomer> dal = FactoryDAL<IDal<ICustomer>>.Create("ADODal");
+            IDal<CustomerBase> dal = FactoryDAL<IDal<CustomerBase>>.Create("ADODal");
             dal.Add(cust);//In memory
             dal.Save(); //Physical commit
         }
 
-       
+        private void dalType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
     }
 }

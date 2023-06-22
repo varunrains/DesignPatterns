@@ -185,6 +185,7 @@
             this.dalType.Name = "dalType";
             this.dalType.Size = new System.Drawing.Size(131, 23);
             this.dalType.TabIndex = 16;
+            this.dalType.SelectedIndexChanged += new System.EventHandler(this.dalType_SelectedIndexChanged);
             // 
             // FormCustomer
             // 

@@ -3,6 +3,7 @@ using InterfaceCustomer;
 using InterfaceDAL;
 using Unity;
 using Unity.Resolution;
+using EfDAL = EntityFrameworkDAL;
 
 namespace FactoryDAL
 {
@@ -18,8 +19,12 @@ namespace FactoryDAL
             {
                 ObjectsofOurProjects = new UnityContainer();
 
-                ObjectsofOurProjects.RegisterType<IDal<ICustomer>,
+                //Because of EF you will have to use the CustomerBase instead of ICustomer
+                ObjectsofOurProjects.RegisterType<IDal<CustomerBase>,
                     CustomerDAL>("ADODal");
+                //Limitation in EF as you cant map interface to EF mapping
+                ObjectsofOurProjects.RegisterType<IDal<CustomerBase>,
+                    EfDAL.CustomerDAL>("EFDal");
             }
             //Design pattern :-  RIP Replace If with Poly
             return ObjectsofOurProjects.Resolve<AnyType>(Type,

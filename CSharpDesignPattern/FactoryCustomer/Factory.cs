@@ -41,9 +41,9 @@ namespace FactoryCustomer
         private static IUnityContainer SetObjectTypes()
         {
             var unity = new UnityContainer();
-            unity.RegisterType<ICustomer, Customer>("Customer", 
+            unity.RegisterType<CustomerBase, Customer>("Customer", 
                 new InjectionConstructor(new CustomerValidationAll()));
-            unity.RegisterType<ICustomer, Lead>("Lead", new InjectionConstructor(new LeadValidation()));
+            unity.RegisterType<CustomerBase, Lead>("Lead", new InjectionConstructor(new LeadValidation()));
             
 
             return unity;
