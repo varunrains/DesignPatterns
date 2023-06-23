@@ -4,7 +4,7 @@ using System.Data.Entity;
 namespace EntityFrameworkDAL
 {
     //Design pattern :- Adapter pattern (Class adapter pattern)
-    public class EfDalAbstract<AnyType> : DbContext, IDal<AnyType> where AnyType : class
+    public class EfDalAbstract<AnyType> : DbContext, IRepository<AnyType> where AnyType : class
     {
         public EfDalAbstract() : base("name=connectionstring")
         {

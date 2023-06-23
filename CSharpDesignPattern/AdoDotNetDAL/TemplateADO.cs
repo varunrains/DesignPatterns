@@ -1,4 +1,5 @@
 ﻿using CommonDAL;
+using InterfaceDAL;
 using System.Data.SqlClient;
 
 namespace AdoDotNetDAL
@@ -8,6 +9,7 @@ namespace AdoDotNetDAL
         protected SqlConnection connection = null;
         private readonly string _connectionString;
         protected SqlCommand command = null;
+        private IUow _uow = null;
         public TemplateADO(string connectionString) : base(connectionString)
         {
             _connectionString = connectionString;
@@ -15,10 +17,13 @@ namespace AdoDotNetDAL
 
         private void Open()
         {
-            connection = new SqlConnection(_connectionString);
-            connection.Open();
-            command = new SqlCommand();
-            command.Connection = connection;
+            if (connection == null)
+            {
+                connection = new SqlConnection(_connectionString);
+                connection.Open();
+                command = new SqlCommand();
+                command.Connection = connection;
+            }
         }
 
         //Child classes have liberty to override the methods if needed
@@ -27,7 +32,10 @@ namespace AdoDotNetDAL
         protected abstract List<AnyType> ExecuteCommand(); //For GET
         private void Close()
         {
-            connection.Close();
+            if (_uow == null)
+            {
+                connection.Close();
+            }
         }
 
         // Design pattern :- Template Pattern  -> You will have a fixed sequence
@@ -60,6 +68,15 @@ namespace AdoDotNetDAL
         public override List<AnyType> Search()
         {
             return Execute();
+        }
+
+        public override void SetUnitOfWork(IUow uow)
+        {
+            _uow = uow;
+            connection = ((AdoUnitOfWork)uow).Connection;
+            command = new SqlCommand();
+            command.Connection = connection;
+            command.Transaction = ((AdoUnitOfWork)uow).Transaction;
         }
 
     }

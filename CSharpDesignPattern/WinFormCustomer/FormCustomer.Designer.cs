@@ -44,6 +44,7 @@
             this.dtgCustomer = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dalType = new System.Windows.Forms.ComboBox();
+            this.uowBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,11 +188,22 @@
             this.dalType.TabIndex = 16;
             this.dalType.SelectedIndexChanged += new System.EventHandler(this.dalType_SelectedIndexChanged);
             // 
+            // uowBtn
+            // 
+            this.uowBtn.Location = new System.Drawing.Point(634, 176);
+            this.uowBtn.Name = "uowBtn";
+            this.uowBtn.Size = new System.Drawing.Size(86, 37);
+            this.uowBtn.TabIndex = 17;
+            this.uowBtn.Text = "UoW";
+            this.uowBtn.UseVisualStyleBackColor = true;
+            this.uowBtn.Click += new System.EventHandler(this.uowBtn_Click);
+            // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 548);
+            this.Controls.Add(this.uowBtn);
             this.Controls.Add(this.dalType);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dtgCustomer);
@@ -235,5 +247,6 @@
         private DataGridView dtgCustomer;
         private Button btnAdd;
         private ComboBox dalType;
+        private Button uowBtn;
     }
 }

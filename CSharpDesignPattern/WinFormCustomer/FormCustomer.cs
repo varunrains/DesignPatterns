@@ -50,7 +50,7 @@ namespace WinFormCustomer
 
         private void LoadGrid()
         {
-            IDal<CustomerBase> dal = FactoryDAL<IDal<CustomerBase>>.Create(dalType.Text);
+            IRepository<CustomerBase> dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
             List<CustomerBase> custs = dal.Search();
             dtgCustomer.DataSource = custs;
 
@@ -64,14 +64,30 @@ namespace WinFormCustomer
         private void btnAdd_Click(object sender, EventArgs e)
         {
             SetCustomer();
-            IDal<CustomerBase> dal = FactoryDAL<IDal<CustomerBase>>.Create("ADODal");
+            IRepository<CustomerBase> dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
             dal.Add(cust);//In memory
             dal.Save(); //Physical commit
+            LoadGrid();
+            ClearCustomer();
+        }
+
+        private void ClearCustomer()
+        {
+            custName.Text = "";
+            phnNumber.Text = "";
+            billDateTxt.Text = DateTime.Now.Date.ToString();
+            billAmountTxt.Text = "";
+            addressTextBox.Text = "";
         }
 
         private void dalType_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadGrid();
+        }
+
+        private void uowBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

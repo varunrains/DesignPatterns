@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomerProjectPhase1\MiddleLayer.csproj" />
     <ProjectReference Include="..\InterfaceCustomer\InterfaceCustomer.csproj" />
     <ProjectReference Include="..\InterfaceDAL\InterfaceDAL.csproj" />
   </ItemGroup>

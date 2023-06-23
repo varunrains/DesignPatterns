@@ -20,11 +20,14 @@ namespace FactoryDAL
                 ObjectsofOurProjects = new UnityContainer();
 
                 //Because of EF you will have to use the CustomerBase instead of ICustomer
-                ObjectsofOurProjects.RegisterType<IDal<CustomerBase>,
+                ObjectsofOurProjects.RegisterType<IRepository<CustomerBase>,
                     CustomerDAL>("ADODal");
                 //Limitation in EF as you cant map interface to EF mapping
-                ObjectsofOurProjects.RegisterType<IDal<CustomerBase>,
+                ObjectsofOurProjects.RegisterType<IRepository<CustomerBase>,
                     EfDAL.CustomerDAL>("EFDal");
+
+                ObjectsofOurProjects.RegisterType<IUow,
+                  AdoUnitOfWork>("AdoUow");
             }
             //Design pattern :-  RIP Replace If with Poly
             return ObjectsofOurProjects.Resolve<AnyType>(Type,

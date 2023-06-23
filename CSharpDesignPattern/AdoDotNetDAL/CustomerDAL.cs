@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace AdoDotNetDAL
 {
-    public class CustomerDAL : TemplateADO<CustomerBase>, IDal<CustomerBase>
+    public class CustomerDAL : TemplateADO<CustomerBase>, IRepository<CustomerBase>
     {
         public CustomerDAL(string connectionString) : base(connectionString)
         {

@@ -4,8 +4,8 @@ namespace InterfaceCustomer
 {
     //Because of the shortcoming in the EF we are defining it as 
     //abstract class here, and you cannot create a object of abstract class
-    
-    public abstract class CustomerBase : ICustomer
+    //We are removing the abstract key word from here
+    public class CustomerBase : ICustomer
     {
 
         public IValidation<ICustomer>? _customerValidation = null;

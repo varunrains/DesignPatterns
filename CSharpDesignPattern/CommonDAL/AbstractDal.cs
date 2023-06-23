@@ -5,7 +5,7 @@ namespace CommonDAL
     //This is like a GlobalRespository class which will implement
     //common CRUD operations
     //This is half defined parent class hence abstract class
-    public abstract class AbstractDal<AnyType> : IDal<AnyType>
+    public abstract class AbstractDal<AnyType> : IRepository<AnyType>
     {
         //The heart of any DB related stuff is the connection string
         protected string ConnectionString = "";
@@ -37,6 +37,11 @@ namespace CommonDAL
         }
 
         public virtual void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void SetUnitOfWork(IUow uow)
         {
             throw new NotImplementedException();
         }
