@@ -40,6 +40,7 @@ namespace AdoDotNetDAL
             while (dr.Read())
             {
                 CustomerBase cust = Factory<CustomerBase>.Create("Customer");
+                cust.Id = Convert.ToInt32(dr["ID"].ToString());
                 cust.CustomerName = dr["CustomerName"].ToString();
                 cust.CustomerType = dr["CustomerType"].ToString();
                 cust.BillDate = Convert.ToDateTime(dr["BillDate"]);

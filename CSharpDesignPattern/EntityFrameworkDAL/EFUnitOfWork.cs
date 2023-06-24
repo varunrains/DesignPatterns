@@ -8,7 +8,8 @@ namespace EntityFrameworkDAL
     {
       
         // public DbContext Context { get; set; }
-        public EFUnitOfWork() {
+        public EFUnitOfWork() : base("name=connectionstring")
+        {
            // Context = new DbContext("name=connectionstring");
         }
 
@@ -22,7 +23,7 @@ namespace EntityFrameworkDAL
            SaveChanges();
         }
 
-        public void RollBack()
+        public void RollBack() //adapter pattern
         {
             RollBack();
         }

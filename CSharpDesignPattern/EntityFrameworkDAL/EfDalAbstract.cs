@@ -4,7 +4,7 @@ using System.Data.Entity;
 namespace EntityFrameworkDAL
 {
     //Design pattern :- Adapter pattern (Class adapter pattern)
-    public class EfDalAbstract<AnyType> : IUow,IRepository<AnyType> where AnyType : class
+    public class EfDalAbstract<AnyType> : IRepository<AnyType> where AnyType : class
     {
         DbContext _dbContext;
         public EfDalAbstract()
@@ -15,16 +15,6 @@ namespace EntityFrameworkDAL
         public void Add(AnyType type)
         {
             _dbContext.Set<AnyType>().Add(type); // in-memory commit
-        }
-
-        public void Commit()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RollBack()
-        {
-            throw new NotImplementedException();
         }
 
         public void Save()
@@ -42,30 +32,14 @@ namespace EntityFrameworkDAL
             throw new NotImplementedException();
         }
 
-        void IRepository<AnyType>.Add(AnyType type)
-        {
-            throw new NotImplementedException();
-        }
 
-        void IRepository<AnyType>.Save()
-        {
-            throw new NotImplementedException();
-        }
 
-        List<AnyType> IRepository<AnyType>.Search()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<AnyType>.SetUnitOfWork(IUow uow)
+        public void SetUnitOfWork(IUow uow)
         {
             //Global Transaction
             _dbContext = ((EFUnitOfWork)uow);
         }
 
-        void IRepository<AnyType>.Update(AnyType type)
-        {
-            throw new NotImplementedException();
-        }
+    
     }
 }

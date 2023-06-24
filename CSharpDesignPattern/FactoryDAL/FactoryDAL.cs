@@ -25,7 +25,7 @@ namespace FactoryDAL
                     CustomerDAL>("ADODal");
                 //Limitation in EF as you cant map interface to EF mapping
                 ObjectsofOurProjects.RegisterType<IRepository<CustomerBase>,
-                    CustomerDAL>("EFDal");
+                    EfDalAbstract<CustomerBase>>("EFDal");
 
                 ObjectsofOurProjects.RegisterType<IUow,
                   AdoUnitOfWork>("AdoUow");
