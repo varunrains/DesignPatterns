@@ -22,8 +22,8 @@ namespace AdoDotNetDAL
                                           "CustomerType," +
                                           "BillAmount,BillDate," +
                                           "PhoneNumber,Address)" +
-                                          "values('" + obj.CustomerName + "'," +
-                                          obj.CustomerType + ",'" +
+                                          "values('" + obj.CustomerName + "','" +
+                                          obj.CustomerType + "'," +
                                           obj.BillAmount + ",'" +
                                           obj.BillDate + "','" +
                                           obj.PhoneNumber + "','" +

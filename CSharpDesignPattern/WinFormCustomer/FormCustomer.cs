@@ -87,7 +87,34 @@ namespace WinFormCustomer
 
         private void uowBtn_Click(object sender, EventArgs e)
         {
+            IUow uow = FactoryDAL<IUow>.Create("AdoUow");
+            try
+            {
+               
+                CustomerBase cust1 = new CustomerBase();
+                cust1.CustomerType = "Lead";
+                cust1.CustomerName = "Cust1";
 
+                //Unit of work
+                IRepository<CustomerBase> dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
+                dal.Add(cust1); //IN memory
+                dal.SetUnitOfWork(uow);
+                dal.Save(); //No problem
+
+                var cust2 = new CustomerBase();
+                cust2.CustomerType = "Lead";
+                cust2.CustomerName = "Cust2";
+                cust2.Address = "DSFSDLKSDKSDF EXTRA LARGE THAN 50 ";
+                IRepository<CustomerBase> dal1 = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
+
+                dal1.Add(cust2); //IN memory
+                dal1.SetUnitOfWork(uow);
+                dal1.Save(); //No problem
+                uow.Commit();
+            }catch(Exception ex)
+            {
+                uow.RollBack();
+            }
         }
     }
 }

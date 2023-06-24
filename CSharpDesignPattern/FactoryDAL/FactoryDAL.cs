@@ -1,4 +1,5 @@
 ﻿using AdoDotNetDAL;
+using EntityFrameworkDAL;
 using InterfaceCustomer;
 using InterfaceDAL;
 using Unity;
@@ -24,10 +25,12 @@ namespace FactoryDAL
                     CustomerDAL>("ADODal");
                 //Limitation in EF as you cant map interface to EF mapping
                 ObjectsofOurProjects.RegisterType<IRepository<CustomerBase>,
-                    EfDAL.CustomerDAL>("EFDal");
+                    CustomerDAL>("EFDal");
 
                 ObjectsofOurProjects.RegisterType<IUow,
                   AdoUnitOfWork>("AdoUow");
+                ObjectsofOurProjects.RegisterType<IUow,
+                 EFUnitOfWork>("EfUow");
             }
             //Design pattern :-  RIP Replace If with Poly
             return ObjectsofOurProjects.Resolve<AnyType>(Type,
