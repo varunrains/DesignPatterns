@@ -8,13 +8,13 @@ namespace MiddleLayer
         // This parameterless constructor is required for this purpose
         //When we dont want to validate the customer if it is coming from DB to client
         //Only validate when it is going from client to DB
-        public Customer() {
-            CustomerType = "Customer";
-        }
-        public Customer(IValidation<ICustomer> custValidation):
+        //public Customer() {
+        //    CustomerType = "Customer";
+        //}
+        public Customer(IValidation<ICustomer> custValidation, string custType):
             base(custValidation)
         {
-            CustomerType = "Customer";
+            CustomerType = custType;
         }
     }
 }

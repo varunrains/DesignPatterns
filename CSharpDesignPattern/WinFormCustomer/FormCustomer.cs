@@ -1,8 +1,7 @@
-using MiddleLayer;
 using FactoryCustomer;
+using FactoryDAL;
 using InterfaceCustomer;
 using InterfaceDAL;
-using FactoryDAL;
 
 namespace WinFormCustomer
 {

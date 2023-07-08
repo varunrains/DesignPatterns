@@ -41,10 +41,18 @@ namespace FactoryCustomer
         private static IUnityContainer SetObjectTypes()
         {
             var unity = new UnityContainer();
-            unity.RegisterType<CustomerBase, Customer>("Customer", 
-                new InjectionConstructor(new CustomerValidationAll()));
-            unity.RegisterType<CustomerBase, Lead>("Lead", new InjectionConstructor(new LeadValidation()));
-            
+
+            IValidation<ICustomer> custValidation = new PhoneValidation(new CustomerBasicValidation());
+            unity.RegisterType<CustomerBase, Customer>("Lead", new InjectionConstructor(custValidation, "Lead"));
+
+            custValidation = new CustomerBasicValidation();
+            unity.RegisterType<CustomerBase, Customer>("SelfService", new InjectionConstructor(custValidation, "SelfService"));
+
+            custValidation = new CustomerAddressValidation(new CustomerBasicValidation());
+            unity.RegisterType<CustomerBase, Customer>("HomeDelivery", new InjectionConstructor(custValidation, "HomeDelivery"));
+
+            custValidation = new CustomerBillValidation(new CustomerAddressValidation(new PhoneValidation(new CustomerBasicValidation())));
+            unity.RegisterType<CustomerBase, Customer>("Customer", new InjectionConstructor(custValidation, "Customer"));
 
             return unity;
         }
