@@ -26,7 +26,7 @@ namespace CommonDAL
             anyTypes.Add(type);
         }
 
-        public virtual List<AnyType> Search()
+        public virtual IEnumerable<AnyType> Search()
         {
             return anyTypes;
         }
@@ -44,6 +44,11 @@ namespace CommonDAL
         public virtual void SetUnitOfWork(IUow uow)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<AnyType> GetData()
+        {
+            return anyTypes;
         }
     }
 }

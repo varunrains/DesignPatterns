@@ -1,5 +1,6 @@
 ﻿using CommonDAL;
 using InterfaceDAL;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace AdoDotNetDAL
@@ -17,7 +18,7 @@ namespace AdoDotNetDAL
 
         private void Open()
         {
-            if (connection == null)
+            if (connection == null || (connection.State == ConnectionState.Closed))
             {
                 connection = new SqlConnection(_connectionString);
                 connection.Open();
@@ -51,10 +52,9 @@ namespace AdoDotNetDAL
         public List<AnyType> Execute()  //Fixed sequence for GET operation
         {
             Open();
-            List<AnyType> objs = ExecuteCommand();
+            anyTypes = ExecuteCommand();
             Close();
-
-            return objs;
+            return anyTypes;
         }
 
         public override void Save()

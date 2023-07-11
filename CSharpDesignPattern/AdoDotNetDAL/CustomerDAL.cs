@@ -11,24 +11,37 @@ namespace AdoDotNetDAL
         {
         }
 
+        public override void Add(CustomerBase type)
+        {
+            type.Validate();
+            base.Add(type);
+        }
+
         //Template Pattern
         //Fixed sequence
         //Child classes can override the methods in the sequence
         //But the child classes cannot override the sequence itself (VIMP point)
         protected override void ExecuteCommand(CustomerBase obj)
         {
-            command.CommandText = "insert into tblCustomer(" +
-                                          "CustomerName," +
-                                          "CustomerType," +
-                                          "BillAmount,BillDate," +
-                                          "PhoneNumber,Address)" +
-                                          "values('" + obj.CustomerName + "','" +
-                                          obj.CustomerType + "'," +
-                                          obj.BillAmount + ",'" +
-                                          obj.BillDate + "','" +
-                                          obj.PhoneNumber + "','" +
-                                          obj.Address + "')";
-            command.ExecuteNonQuery();
+            if (obj.Id == 0)
+            {
+                command.CommandText = "insert into tblCustomer(" +
+                                              "CustomerName," +
+                                              "CustomerType," +
+                                              "BillAmount,BillDate," +
+                                              "PhoneNumber,Address)" +
+                                              "values('" + obj.CustomerName + "','" +
+                                              obj.CustomerType + "'," +
+                                              obj.BillAmount + ",'" +
+                                              obj.BillDate + "','" +
+                                              obj.PhoneNumber + "','" +
+                                              obj.Address + "')";
+                command.ExecuteNonQuery();
+            }
+            else
+            {
+                //update
+            }
         }
 
         protected override List<CustomerBase> ExecuteCommand()
@@ -36,7 +49,8 @@ namespace AdoDotNetDAL
             command.CommandText = "select * from tblCustomer";
             SqlDataReader dr = null;
             dr = command.ExecuteReader();
-            List<CustomerBase> custs = new List<CustomerBase>();
+            //Load it to in-memory collection
+            //List<CustomerBase> custs = new List<CustomerBase>();
             while (dr.Read())
             {
                 CustomerBase cust = Factory<CustomerBase>.Create("Customer");
@@ -47,10 +61,10 @@ namespace AdoDotNetDAL
                 cust.BillAmount = Convert.ToDecimal(dr["BillAmount"]);
                 cust.PhoneNumber = dr["PhoneNumber"].ToString();
                 cust.Address = dr["Address"].ToString();
-                custs.Add(cust);
+                anyTypes.Add(cust);
             }
 
-            return custs;
+            return anyTypes;
             
         }
     }

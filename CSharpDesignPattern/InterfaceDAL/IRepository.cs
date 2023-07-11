@@ -6,8 +6,10 @@
         void SetUnitOfWork(IUow uow);
         void Add(AnyType type); //In memory Addition
         void Update(AnyType type); //In memory Updation
-        List<AnyType> Search();
 
+        //Design Pattern : Iterator Pattern
+        IEnumerable<AnyType> Search();
+        IEnumerable<AnyType> GetData();
         void Save(); //Physical Commit
     }
 }

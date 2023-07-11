@@ -40,11 +40,11 @@
             this.billAmountTxt = new System.Windows.Forms.TextBox();
             this.phnNumber = new System.Windows.Forms.TextBox();
             this.addressTextBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.dtgCustomer = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dalType = new System.Windows.Forms.ComboBox();
             this.uowBtn = new System.Windows.Forms.Button();
+            this.saveBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,16 +152,6 @@
             this.addressTextBox.Size = new System.Drawing.Size(154, 91);
             this.addressTextBox.TabIndex = 12;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(103, 172);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 41);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Validate";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // dtgCustomer
             // 
             this.dtgCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -173,7 +163,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(271, 172);
+            this.btnAdd.Location = new System.Drawing.Point(103, 176);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(96, 41);
             this.btnAdd.TabIndex = 15;
@@ -200,16 +190,26 @@
             this.uowBtn.UseVisualStyleBackColor = true;
             this.uowBtn.Click += new System.EventHandler(this.uowBtn_Click);
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Location = new System.Drawing.Point(217, 176);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(96, 41);
+            this.saveBtn.TabIndex = 18;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 548);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.uowBtn);
             this.Controls.Add(this.dalType);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dtgCustomer);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.addressTextBox);
             this.Controls.Add(this.phnNumber);
             this.Controls.Add(this.billAmountTxt);
@@ -245,10 +245,10 @@
         private TextBox billAmountTxt;
         private TextBox phnNumber;
         private TextBox addressTextBox;
-        private Button button1;
         private DataGridView dtgCustomer;
         private Button btnAdd;
         private ComboBox dalType;
         private Button uowBtn;
+        private Button saveBtn;
     }
 }

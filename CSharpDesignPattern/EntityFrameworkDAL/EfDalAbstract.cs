@@ -22,7 +22,7 @@ namespace EntityFrameworkDAL
             _dbContext.SaveChanges(); //physical commit
         }
 
-        public List<AnyType> Search()
+        public IEnumerable<AnyType> Search()
         {
             return _dbContext.Set<AnyType>().AsQueryable<AnyType>().ToList<AnyType>();
         }
@@ -40,6 +40,9 @@ namespace EntityFrameworkDAL
             _dbContext = ((EFUnitOfWork)uow);
         }
 
-    
+        public IEnumerable<AnyType> GetData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

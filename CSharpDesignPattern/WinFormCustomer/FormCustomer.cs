@@ -8,7 +8,7 @@ namespace WinFormCustomer
     public partial class FormCustomer : Form
     {
         private CustomerBase cust;
-
+        private IRepository<CustomerBase> dal;
         public FormCustomer()
         {
             InitializeComponent();
@@ -21,6 +21,7 @@ namespace WinFormCustomer
             cust.BillAmount = Convert.ToDecimal(billAmountTxt.Text);
             cust.BillDate = Convert.ToDateTime(billDateTxt.Text);
             cust.Address = addressTextBox.Text;
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -43,16 +44,25 @@ namespace WinFormCustomer
 
             dalType.Items.Add("ADODal");
             dalType.Items.Add("EFDal");
-            dalType.SelectedIndex = 0;
+            //dalType.SelectedIndex = 0;
+            
+            
+            dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Items[0].ToString());
             LoadGrid();
+
         }
 
         private void LoadGrid()
         {
-            IRepository<CustomerBase> dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
-            List<CustomerBase> custs = dal.Search();
+            var custs = dal.Search(); //fetch from physcial source
             dtgCustomer.DataSource = custs;
+        }
 
+        private void LoadGridInMemory()
+        {
+            dtgCustomer.DataSource = null;
+            var custs = dal.GetData(); // in -memory fetch
+            dtgCustomer.DataSource = custs;
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -63,10 +73,10 @@ namespace WinFormCustomer
         private void btnAdd_Click(object sender, EventArgs e)
         {
             SetCustomer();
-            IRepository<CustomerBase> dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
+            //IRepository<CustomerBase> dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
             dal.Add(cust);//In memory
-            dal.Save(); //Physical commit
-            LoadGrid();
+            //dal.Save(); //Physical commit
+            LoadGridInMemory();
             ClearCustomer();
         }
 
@@ -81,6 +91,7 @@ namespace WinFormCustomer
 
         private void dalType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
             LoadGrid();
         }
 
@@ -95,7 +106,7 @@ namespace WinFormCustomer
                 cust1.CustomerName = "Cust1";
 
                 //Unit of work
-                IRepository<CustomerBase> dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
+                //IRepository<CustomerBase> dal = FactoryDAL<IRepository<CustomerBase>>.Create(dalType.Text);
                 dal.SetUnitOfWork(uow);
                 dal.Add(cust1); //IN memory
                 
@@ -115,6 +126,24 @@ namespace WinFormCustomer
             {
                 uow.RollBack();
             }
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            dal.Save();
+            ClearCustomer();
+            LoadGrid();
+        }
+
+        //Dummy button for Iterator pattern example
+        private void dummyBtn_Click(object sender, EventArgs e)
+        {
+            var custs = dal.GetData();
+            //This add will not even check for validation and it is not same ADD as the other add method
+            //That we have already defined.
+            //custs.Add(new CustomerBase());
+            //Even we can save this bad data
+            dal.Save();
         }
     }
 }
