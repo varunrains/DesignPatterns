@@ -67,7 +67,10 @@ namespace WinFormCustomer
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            cust = Factory<CustomerBase>.Create(comboBox1.Text);
+            if (cust == null)
+            {
+                cust = Factory<CustomerBase>.Create(comboBox1.Text);
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -144,6 +147,30 @@ namespace WinFormCustomer
             //custs.Add(new CustomerBase());
             //Even we can save this bad data
             dal.Save();
+        }
+
+        private void dtgCustomer_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            cust = dal.GetData(e.RowIndex);
+            cust.Clone();
+            LoadCustomerOnUI();
+        }
+
+        private void LoadCustomerOnUI()
+        {
+            custName.Text = cust.CustomerName;
+            phnNumber.Text = cust.PhoneNumber;
+            billDateTxt.Text = cust.BillDate.ToString();
+            billAmountTxt.Text = cust.BillAmount.ToString();
+            addressTextBox.Text = cust.Address;
+            comboBox1.Text = cust.CustomerType.ToString();
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            cust.Revert();
+            ClearCustomer();
+            LoadGridInMemory();
         }
     }
 }

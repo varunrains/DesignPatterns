@@ -44,5 +44,10 @@ namespace EntityFrameworkDAL
         {
             throw new NotImplementedException();
         }
+
+        public AnyType GetData(int index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

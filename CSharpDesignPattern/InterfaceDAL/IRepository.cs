@@ -10,6 +10,8 @@
         //Design Pattern : Iterator Pattern
         IEnumerable<AnyType> Search();
         IEnumerable<AnyType> GetData();
+
+        AnyType GetData(int index);
         void Save(); //Physical Commit
     }
 }

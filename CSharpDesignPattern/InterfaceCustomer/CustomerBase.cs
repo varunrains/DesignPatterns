@@ -10,6 +10,9 @@ namespace InterfaceCustomer
 
         public IValidation<ICustomer>? _customerValidation = null;
 
+        //Design pattern :- Memento pattern (Revert to old state)
+        private ICustomer _oldCopy = null;
+
         public CustomerBase(IValidation<ICustomer> custValidation)
         {
             _customerValidation = custValidation;
@@ -39,6 +42,27 @@ namespace InterfaceCustomer
         public  virtual void Validate()
         {
             _customerValidation?.Validate(this);
+        }
+
+        public void Clone()
+        {
+            if (_oldCopy == null)
+            {
+                //Memberwise clone is a Shallow copy and there is  a different implementation of deep copy
+                // Design pattern : Prototype Pattern - It helps clone the object (Cloning)
+                _oldCopy = (ICustomer)this.MemberwiseClone();
+            }
+        }
+
+        //Design pattern :- Memento pattern (Revert to old state)
+        public void Revert()
+        {
+            this.CustomerName = _oldCopy.CustomerName;
+            this.Address = _oldCopy.Address;
+            this.BillDate = _oldCopy.BillDate;
+            this.BillAmount = _oldCopy.BillAmount;
+            this.CustomerType = _oldCopy.CustomerType;
+            this.PhoneNumber = _oldCopy.PhoneNumber;
         }
     }
 }

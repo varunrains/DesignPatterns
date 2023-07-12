@@ -45,6 +45,7 @@
             this.dalType = new System.Windows.Forms.ComboBox();
             this.uowBtn = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,6 +161,7 @@
             this.dtgCustomer.RowTemplate.Height = 25;
             this.dtgCustomer.Size = new System.Drawing.Size(724, 229);
             this.dtgCustomer.TabIndex = 14;
+            this.dtgCustomer.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCustomer_RowEnter);
             // 
             // btnAdd
             // 
@@ -167,7 +169,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(96, 41);
             this.btnAdd.TabIndex = 15;
-            this.btnAdd.Text = "Add";
+            this.btnAdd.Text = "Add/Update";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -200,11 +202,22 @@
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Location = new System.Drawing.Point(162, 241);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(96, 41);
+            this.cancelBtn.TabIndex = 19;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 548);
+            this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.uowBtn);
             this.Controls.Add(this.dalType);
@@ -250,5 +263,6 @@
         private ComboBox dalType;
         private Button uowBtn;
         private Button saveBtn;
+        private Button cancelBtn;
     }
 }

@@ -23,7 +23,15 @@ namespace CommonDAL
         //So for that reason we are keeping this virtual.
         public virtual void Add(AnyType type)
         {
+            foreach(AnyType any in anyTypes)
+            {
+                if (type.Equals(any))
+                {
+                    return;
+                }
+            }
             anyTypes.Add(type);
+
         }
 
         public virtual IEnumerable<AnyType> Search()
@@ -49,6 +57,10 @@ namespace CommonDAL
         public IEnumerable<AnyType> GetData()
         {
             return anyTypes;
+        }
+        public virtual AnyType GetData(int index)
+        {
+            return anyTypes[index];
         }
     }
 }
