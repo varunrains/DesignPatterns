@@ -13,6 +13,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CommonDAL\CommonDAL.csproj" />
     <ProjectReference Include="..\CustomerProjectPhase1\MiddleLayer.csproj" />
+    <ProjectReference Include="..\Discount\Discount.csproj" />
+    <ProjectReference Include="..\ExtraCharge\ExtraCharge.csproj" />
     <ProjectReference Include="..\InterfaceCustomer\InterfaceCustomer.csproj" />
     <ProjectReference Include="..\InterfaceDAL\InterfaceDAL.csproj" />
     <ProjectReference Include="..\ValidationAlgorithms\ValidationAlgorithms.csproj" />

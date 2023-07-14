@@ -69,7 +69,7 @@ namespace WinFormCustomer
         {
             if (cust == null)
             {
-                cust = Factory<CustomerBase>.Create(comboBox1.Text);
+                cust = FactoryCustomerLookup<CustomerBase>.Create(comboBox1.Text);
             }
         }
 

@@ -14,5 +14,6 @@
         //This is just an example for Design pattern
         void Clone(); // Create a copy of the object
         void Revert(); //Revert back to the old copy
+        decimal ActualCost(); //ActualCost = (BillAmount - Discount) + ExtraCharge;
     }
 }

@@ -53,7 +53,7 @@ namespace AdoDotNetDAL
             //List<CustomerBase> custs = new List<CustomerBase>();
             while (dr.Read())
             {
-                CustomerBase cust = Factory<CustomerBase>.Create("Customer");
+                CustomerBase cust = FactoryCustomerLookup<CustomerBase>.Create("Customer");
                 cust.Id = Convert.ToInt32(dr["ID"].ToString());
                 cust.CustomerName = dr["CustomerName"].ToString();
                 cust.CustomerType = dr["CustomerType"].ToString();

@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoDotNetDAL", "..\AdoDotNe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactoryDAL", "..\FactoryDAL\FactoryDAL.csproj", "{260883D7-FD25-4512-A91E-6BF807DDC0DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkDAL", "..\EntityFrameworkDAL\EntityFrameworkDAL.csproj", "{69E9936F-A9DA-4F8C-B659-13EAE23B138A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkDAL", "..\EntityFrameworkDAL\EntityFrameworkDAL.csproj", "{69E9936F-A9DA-4F8C-B659-13EAE23B138A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discount", "..\Discount\Discount.csproj", "{DF7EE461-4CB9-455E-836D-9CD1ED8ECEB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraCharge", "..\ExtraCharge\ExtraCharge.csproj", "{54426248-4A64-42F8-884B-80BE16C8BA1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{69E9936F-A9DA-4F8C-B659-13EAE23B138A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69E9936F-A9DA-4F8C-B659-13EAE23B138A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69E9936F-A9DA-4F8C-B659-13EAE23B138A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF7EE461-4CB9-455E-836D-9CD1ED8ECEB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF7EE461-4CB9-455E-836D-9CD1ED8ECEB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF7EE461-4CB9-455E-836D-9CD1ED8ECEB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF7EE461-4CB9-455E-836D-9CD1ED8ECEB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54426248-4A64-42F8-884B-80BE16C8BA1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54426248-4A64-42F8-884B-80BE16C8BA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54426248-4A64-42F8-884B-80BE16C8BA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54426248-4A64-42F8-884B-80BE16C8BA1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

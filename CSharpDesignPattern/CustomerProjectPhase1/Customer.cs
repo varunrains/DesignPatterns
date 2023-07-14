@@ -11,8 +11,8 @@ namespace MiddleLayer
         //public Customer() {
         //    CustomerType = "Customer";
         //}
-        public Customer(IValidation<ICustomer> custValidation, string custType):
-            base(custValidation)
+        public Customer(IValidation<ICustomer> custValidation,IDiscount discount, IExtraCharge extraCharge, string custType):
+            base(custValidation,discount, extraCharge)
         {
             CustomerType = custType;
         }

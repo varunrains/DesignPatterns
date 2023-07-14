@@ -9,13 +9,19 @@ namespace InterfaceCustomer
     {
 
         public IValidation<ICustomer>? _customerValidation = null;
+        private readonly IDiscount _discount = null;
+        private readonly IExtraCharge _extraCharge = null;
 
         //Design pattern :- Memento pattern (Revert to old state)
         private ICustomer _oldCopy = null;
 
-        public CustomerBase(IValidation<ICustomer> custValidation)
+        public CustomerBase(IValidation<ICustomer> custValidation,
+                            IDiscount discount,
+                            IExtraCharge extraCharge)
         {
             _customerValidation = custValidation;
+            _discount = discount;
+            _extraCharge = extraCharge;
         }
 
         //For entity framework we need a primary key
@@ -37,7 +43,6 @@ namespace InterfaceCustomer
             BillDate = DateTime.Now;
             Address = "";
         }
-
 
         public  virtual void Validate()
         {
@@ -63,6 +68,11 @@ namespace InterfaceCustomer
             this.BillAmount = _oldCopy.BillAmount;
             this.CustomerType = _oldCopy.CustomerType;
             this.PhoneNumber = _oldCopy.PhoneNumber;
+        }
+
+        public decimal ActualCost()
+        {
+           return (BillAmount - _discount.Calculate(this)) + _extraCharge.Calculate(this);
         }
     }
 }

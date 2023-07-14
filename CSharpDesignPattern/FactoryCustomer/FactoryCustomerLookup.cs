@@ -11,7 +11,7 @@ namespace FactoryCustomer
     //Where you are outsourcing the object creation work to some other project
     //So that when there is a new customer type you can change
     //in only one place and not many places
-    public static class Factory<AnyType> //Design Pattern :- Simple Factory pattern
+    public static class FactoryCustomerLookup<AnyType> //Design Pattern :- Simple Factory pattern
     {
         //private static readonly Lazy<Dictionary<string, CustomerBase>> customers 
         //    = new Lazy<Dictionary<string, CustomerBase>>(() => SetCustomerTypes());
@@ -19,7 +19,7 @@ namespace FactoryCustomer
         private static Lazy<IUnityContainer> ObjectsOfOurProject 
             = new Lazy<IUnityContainer>(() => SetObjectTypes());
 
-        static Factory()
+        static FactoryCustomerLookup()
         {
             //Eager loading. Not a good practice to follow
             //customers.Add("Customer", new Customer());
