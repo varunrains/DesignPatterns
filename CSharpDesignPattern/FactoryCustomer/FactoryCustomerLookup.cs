@@ -1,9 +1,5 @@
 ﻿using InterfaceCustomer;
-using MiddleLayer;
 using Unity;
-using Unity.Injection;
-using Unity.Resolution;
-using ValidationAlgorithms;
 
 namespace FactoryCustomer
 {
@@ -42,22 +38,29 @@ namespace FactoryCustomer
         {
             var unity = new UnityContainer();
 
-            IValidation<ICustomer> custValidation = new PhoneValidation(new CustomerBasicValidation());
-            unity.RegisterType<CustomerBase, Customer>("Lead", new InjectionConstructor(custValidation, "Lead"));
+            //IValidation<ICustomer> custValidation = new PhoneValidation(new CustomerBasicValidation());
+            //unity.RegisterType<CustomerBase, Customer>("Lead", new InjectionConstructor(custValidation, "Lead"));
 
-            custValidation = new CustomerBasicValidation();
-            unity.RegisterType<CustomerBase, Customer>("SelfService", new InjectionConstructor(custValidation, "SelfService"));
+            //custValidation = new CustomerBasicValidation();
+            //unity.RegisterType<CustomerBase, Customer>("SelfService", new InjectionConstructor(custValidation, "SelfService"));
 
-            custValidation = new CustomerAddressValidation(new CustomerBasicValidation());
-            unity.RegisterType<CustomerBase, Customer>("HomeDelivery", new InjectionConstructor(custValidation, "HomeDelivery"));
+            //custValidation = new CustomerAddressValidation(new CustomerBasicValidation());
+            //unity.RegisterType<CustomerBase, Customer>("HomeDelivery", new InjectionConstructor(custValidation, "HomeDelivery"));
 
-            custValidation = new CustomerBillValidation(new CustomerAddressValidation(new PhoneValidation(new CustomerBasicValidation())));
-            unity.RegisterType<CustomerBase, Customer>("Customer", new InjectionConstructor(custValidation, "Customer"));
+            //custValidation = new CustomerBillValidation(new CustomerAddressValidation(new PhoneValidation(new CustomerBasicValidation())));
+            //unity.RegisterType<CustomerBase, Customer>("Customer", new InjectionConstructor(custValidation, "Customer"));
 
+           
+
+            unity.RegisterType<FactoryBase, FactoryLead>("Lead");
+            unity.RegisterType<FactoryBase, FactorySelfService>("SelfService");
+            unity.RegisterType<FactoryBase, FactoryHomeDelivery>("HomeDelivery");
+            unity.RegisterType<FactoryBase, FactoryCustomer>("Customer");
             return unity;
+
         }
 
-        public static AnyType Create(string Type)
+        public static CustomerBase Create(string Type)
         {
             //Design Pattern :- Lazy loading
             //If can be replaced by using Lazy class (inbuilt)
@@ -70,7 +73,9 @@ namespace FactoryCustomer
 
             //Design Pattern :- RIP Replace if with polymorphism
             //Resol
-            return ObjectsOfOurProject.Value.Resolve<AnyType>(Type);
+            FactoryBase factoryBase = ObjectsOfOurProject.Value.Resolve<FactoryBase>(Type);
+            return factoryBase.CreateCustomer();
+            //return ObjectsOfOurProject.Value.Resolve<AnyType>(Type);
                
         }
     }

@@ -172,5 +172,17 @@ namespace WinFormCustomer
             ClearCustomer();
             LoadGridInMemory();
         }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cust.Validate();
+                MessageBox.Show(cust.ActualCost().ToString());
+            }
+            catch(Exception ex) {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
     }
 }

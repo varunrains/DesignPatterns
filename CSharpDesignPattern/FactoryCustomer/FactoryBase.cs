@@ -32,7 +32,7 @@ namespace FactoryCustomer
             return new ExtraChargeWeekend();
         }
 
-        public  ICustomer CreateCustomer()
+        public  CustomerBase CreateCustomer()
         {
             return new Customer(CreateValidation(), CreateDiscount(), CreateExtraCharge(), _customerType);
         }
